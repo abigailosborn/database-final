@@ -1,29 +1,69 @@
 import csv
 import os
 
-def get_csv_cell(file_path, row_index, col_index):
-    try:
-        with open('/Users/drago/OneDrive/Desktop/College 2025-2026/TrojanDefense.csv', mode='r', newline='', encoding='utf-8') as csvfile:
-            reader = csv.reader(csvfile)
-            for i, row in enumerate(reader):
-                if i == row_index:
-                    if col_index < 0 or col_index >= len(row):
-                        raise IndexError(f"Column index {col_index} out of range for row {i}.")
-                    return row[col_index]
-        # If loop completes without returning, row not found
-        raise IndexError(f"Row index {row_index} out of range.")
-    except csv.Error as e:
-        raise ValueError(f"Error reading CSV file: {e}")
+TREE_COUNT_COL = 6
+TREE_STATUS_COL = 3
+SYMBOL_COL = 5
+DBH_COL = 7
+HEIGHT_COL = 8
+RADIAL_GROWTH_COL = 11
+AGE_COL = 14
+CROWN_COVERAGE_COL = 15
+SNAG_DECAY_COL = 19
     
-with open('/Users/drago/OneDrive/Desktop/College 2025-2026/TrojanDefense.csv', mode='r') as file:
-    csv_reader = csv.reader(file)
-    for row in csv_reader:
-        print(row)
-    value = get_csv_cell(csv_reader, row_index=10, col_index=5)
+def make_death_insert_statement():
+    try:
+        with open('/Users/drago/OneDrive/Desktop/College 2025-2026/TrojanDefense.csv', mode='r') as file:
+            csv_reader = csv.reader(file)
+            with open("/Users/drago/OneDrive/Desktop/College 2025-2026/output.txt", "w", encoding="utf-8") as f:
+                index = 0
+                row_index = 0
+                col_index = 0
+                for row in csv_reader:
+                    if(row[TREE_COUNT_COL].isdigit()):
+                        if(int(row[TREE_COUNT_COL]) == 1):
+                            index += 1
+                            if(row[TREE_STATUS_COL] == 'D'):
+                                print(f"INSERT INTO DEATH (TreeID, SnagDecay) VALUES ({index}, {row[SNAG_DECAY_COL]});", file=f)
+            print("Data successfully written to output.txt")
+    except OSError as e:
+        print(f"File error: {e}")
 
-try:
-    with open("/Users/drago/OneDrive/Desktop/College 2025-2026/output.txt", "w", encoding="utf-8") as f:
-        print(f"INSERT({value})", file=f)
-    print("Data successfully written to output.txt")
-except OSError as e:
-    print(f"File error: {e}")
+def make_life_insert_statement():
+    try:
+        with open('/Users/drago/OneDrive/Desktop/College 2025-2026/TrojanDefense.csv', mode='r') as file:
+            csv_reader = csv.reader(file)
+            with open("/Users/drago/OneDrive/Desktop/College 2025-2026/output.txt", "w", encoding="utf-8") as f:
+                index = 0
+                row_index = 0
+                col_index = 0
+                for row in csv_reader:
+                    if(row[TREE_COUNT_COL].isdigit()):
+                        if(int(row[TREE_COUNT_COL]) == 1):
+                            index += 1
+                            if(row[TREE_STATUS_COL] == 'L'):
+                                print(f"INSERT INTO LIFE (TreeID, RadialGrowth, Age, Height, CrownCoverage) VALUES ({index}, {row[RADIAL_GROWTH_COL]}, {row[AGE_COL]}, {row[HEIGHT_COL]}, {row[CROWN_COVERAGE_COL]});", file=f)
+            print("Data successfully written to output.txt")
+    except OSError as e:
+        print(f"File error: {e}")
+
+
+def make_purgatory_insert_statement():
+    try:
+        with open('/Users/drago/OneDrive/Desktop/College 2025-2026/TrojanDefense.csv', mode='r') as file:
+            csv_reader = csv.reader(file)
+            with open("/Users/drago/OneDrive/Desktop/College 2025-2026/output.txt", "w", encoding="utf-8") as f:
+                index = 0
+                row_index = 0
+                col_index = 0
+                for row in csv_reader:
+                    if(row[TREE_COUNT_COL].isdigit()):
+                        if(int(row[TREE_COUNT_COL]) == 1):
+                            index += 1
+                            print(f"INSERT INTO PURGATORY (TreeID, Symbol, Status, DBH) VALUES ({index}, \'{row[SYMBOL_COL]}\', \'{row[TREE_STATUS_COL]}\', {row[DBH_COL]});", file=f)
+            print("Data successfully written to output.txt")
+    except OSError as e:
+        print(f"File error: {e}")
+#make_death_insert_statement()
+#make_life_insert_statement()
+make_purgatory_insert_statement()
