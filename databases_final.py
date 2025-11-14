@@ -42,7 +42,14 @@ def make_life_insert_statement():
                         if(int(row[TREE_COUNT_COL]) == 1):
                             index += 1
                             if(row[TREE_STATUS_COL] == 'L'):
-                                print(f"INSERT INTO LIFE (TreeID, RadialGrowth, Age, Height, CrownCoverage) VALUES ({index}, {row[RADIAL_GROWTH_COL]}, {row[AGE_COL]}, {row[HEIGHT_COL]}, {row[CROWN_COVERAGE_COL]});", file=f)
+                                if(row[RADIAL_GROWTH_COL] == '' and row[AGE_COL] != ''):
+                                    print(f"INSERT INTO LIFE (TreeID, RadialGrowth, Age, Height, CrownCoverage) VALUES ({index}, null, {row[AGE_COL]}, {row[HEIGHT_COL]}, {row[CROWN_COVERAGE_COL]});", file=f)
+                                elif(row[AGE_COL] == '' and row[RADIAL_GROWTH_COL] != ''):
+                                    print(f"INSERT INTO LIFE (TreeID, RadialGrowth, Age, Height, CrownCoverage) VALUES ({index}, {row[RADIAL_GROWTH_COL]}, null, {row[HEIGHT_COL]}, {row[CROWN_COVERAGE_COL]});", file=f)
+                                elif(row[RADIAL_GROWTH_COL] != '' and row[AGE_COL] != ''):
+                                    print(f"INSERT INTO LIFE (TreeID, RadialGrowth, Age, Height, CrownCoverage) VALUES ({index}, {row[RADIAL_GROWTH_COL]}, {row[AGE_COL]}, {row[HEIGHT_COL]}, {row[CROWN_COVERAGE_COL]});", file=f)
+                                elif(row[AGE_COL] == '' and row[RADIAL_GROWTH_COL] == ''):
+                                    print(f"INSERT INTO LIFE (TreeID, RadialGrowth, Age, Height, CrownCoverage) VALUES ({index}, null, null, {row[HEIGHT_COL]}, {row[CROWN_COVERAGE_COL]});", file=f)
             print("Data successfully written to output.txt")
     except OSError as e:
         print(f"File error: {e}")
@@ -64,6 +71,6 @@ def make_purgatory_insert_statement():
             print("Data successfully written to output.txt")
     except OSError as e:
         print(f"File error: {e}")
-#make_death_insert_statement()
+make_death_insert_statement()
 #make_life_insert_statement()
-make_purgatory_insert_statement()
+#make_purgatory_insert_statement()
