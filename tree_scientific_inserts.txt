@@ -1,0 +1,9 @@
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('PIPO', 'Pinus Ponderosa');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('PSME', 'Pseudotsuga Menziesii');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('LAOC', 'Larix Occidentalis');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('ABGR', 'Abies Grandis');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('THPL', 'Thuja Plicata');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('TSHE', 'Tsuga Heterophylla');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('PIMO3', 'Pinus Monticola');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('PICO', 'Pinus Contorta');
+INSERT INTO TREESCIENTIFIC (Symbol, ScientificName) VALUES ('ABLA', 'Abies Lasiocarpa');

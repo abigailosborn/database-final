@@ -1,0 +1,9 @@
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('PIPO', 'Ponderosa Pine');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('PSME', 'Douglas-Fir');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('LAOC', 'Western Larch');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('ABGR', 'Grand Fir');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('THPL', 'Western Redcedar');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('TSHE', 'Western Hemlock');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('PIMO3', 'Western White Pine');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('PICO', 'Lodgepole Pine');
+INSERT INTO TREECOMMON (Symbol, CommonName) VALUES ('ABLA', 'Subalpine Fir');
